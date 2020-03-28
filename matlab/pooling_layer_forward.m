@@ -24,7 +24,7 @@ function [output] = pooling_layer_forward(input, layer)
     output.data = zeros([h_out, w_out, c, batch_size]);
     max_val_store = zeros(h_out*w_out,1);
     counter=1;
-    if(k~=stride)
+    
         for b=1:batch_size
             batch=data(:,:,:,b);
             for ci=1:c
@@ -39,12 +39,6 @@ function [output] = pooling_layer_forward(input, layer)
                 output.data(:,:,ci,b)=reshape(max_val_store,[h_out,w_out])';
             end
         end
-    else
-         for i=1:batch_size
-            output.data(:,:,:,i)= sepblockfun(padarray(data(:,:,:,i),[pad pad]),[k, k],'max');
-            %output.data(:,:,:,i) = pooled(1:stride:end, 1:stride:end,:);  
-         end
-    end
      output.data = reshape(output.data,[h_out*w_out*c,batch_size]);
     
 end
