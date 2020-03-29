@@ -39,6 +39,7 @@ function [output] = pooling_layer_forward(input, layer)
                 output.data(:,:,ci,b)=reshape(max_val_store,[h_out,w_out])';
             end
         end
+      
      output.data = reshape(output.data,[h_out*w_out*c,batch_size]);
     
 end
